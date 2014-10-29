@@ -33,8 +33,6 @@
             this.value = new System.Windows.Forms.ComboBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.stripLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.calculateButton = new System.Windows.Forms.Button();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.updateButton = new System.Windows.Forms.Button();
@@ -63,8 +61,10 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.statusStrip1.SuspendLayout();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.statusStrip = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip1.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // equation
@@ -100,21 +100,6 @@
             this.textBox2.Size = new System.Drawing.Size(100, 20);
             this.textBox2.TabIndex = 4;
             this.textBox2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.KeyPress);
-            // 
-            // statusStrip1
-            // 
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.stripLabel});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 439);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(770, 22);
-            this.statusStrip1.TabIndex = 6;
-            this.statusStrip1.Text = "statusStrip1";
-            // 
-            // stripLabel
-            // 
-            this.stripLabel.Name = "stripLabel";
-            this.stripLabel.Size = new System.Drawing.Size(0, 17);
             // 
             // calculateButton
             // 
@@ -318,7 +303,7 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(150, 169);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(35, 13);
+            this.label4.Size = new System.Drawing.Size(0, 13);
             this.label4.TabIndex = 40;
             // 
             // label5
@@ -326,7 +311,7 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(150, 195);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(35, 13);
+            this.label5.Size = new System.Drawing.Size(0, 13);
             this.label5.TabIndex = 41;
             // 
             // label6
@@ -334,7 +319,7 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(150, 221);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(35, 13);
+            this.label6.Size = new System.Drawing.Size(0, 13);
             this.label6.TabIndex = 42;
             // 
             // label7
@@ -342,14 +327,31 @@
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(150, 247);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(35, 13);
+            this.label7.Size = new System.Drawing.Size(0, 13);
             this.label7.TabIndex = 43;
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.statusStrip});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 439);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(770, 22);
+            this.statusStrip1.TabIndex = 44;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // statusStrip
+            // 
+            this.statusStrip.Name = "statusStrip";
+            this.statusStrip.Size = new System.Drawing.Size(73, 17);
+            this.statusStrip.Text = "Calculation: ";
             // 
             // scientificCalculator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(770, 461);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
@@ -370,7 +372,6 @@
             this.Controls.Add(this.textBox7);
             this.Controls.Add(this.updateButton);
             this.Controls.Add(this.calculateButton);
-            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.textBox2);
@@ -381,10 +382,10 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "scientificCalculator";
             this.Text = "Scientific Calculator";
-            this.statusStrip1.ResumeLayout(false);
-            this.statusStrip1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -396,8 +397,6 @@
         private System.Windows.Forms.ComboBox value;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.StatusStrip statusStrip1;
-        private System.Windows.Forms.ToolStripStatusLabel stripLabel;
         private System.Windows.Forms.Button calculateButton;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Button updateButton;
@@ -426,6 +425,8 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel statusStrip;
     }
 }
 
