@@ -8,35 +8,15 @@ using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 
-namespace WindowsFormsApplication1 {
+namespace WindowsFormsApplication1
+{
 
-    public partial class scientificCalculator : Form {
-
-        public string Text { get; set; }
-        public object Value { get; set; }
-
-        public override string ToString()
-        {
-            return Text;
-        }
-
+    public partial class scientificCalculator : Form
+    {
+        
         public scientificCalculator()
         {
             InitializeComponent();
-        }
-
-        
-
-        
-        public bool calculations()
-        {
-           
-            return false;
-        }
-        
-        public void equalition_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void exit_Click(object sender, EventArgs e)
@@ -49,13 +29,18 @@ namespace WindowsFormsApplication1 {
             MessageBox.Show("Create by Vojta 'IT' Horcicka");
         }
 
-        private void physicsPanel_Click(object sender, EventArgs e)
+        private void KeyPress(object sender, KeyPressEventArgs e)
         {
-
+            if (e.KeyChar == (char)ConsoleKey.Enter)
+            {
+                calculateButton_Click(null, null);
+            }
         }
 
         private void calculateButton_Click(object sender, EventArgs e)
         {
+            // To-Do - More equations (Power, Calorimetric equation etc...)
+            #region Work
             if (equation.Text == "Work")
             {
                 if (value.Text == "Work - W")
@@ -63,29 +48,25 @@ namespace WindowsFormsApplication1 {
                     float firstValue;
                     float secondValue;
 
-                    string first = value1.Text;
-                    string second = value2.Text;
+                    string first = textBox1.Text;
+                    string second = textBox2.Text;
 
                     firstValue = float.Parse(first);
                     secondValue = float.Parse(second);
 
-                    try { }
-                    catch (Exception)
-                    {
-                        MessageBox.Show("Exception thrown!");
-                    }
-                        MessageBox.Show("Total " + (firstValue * secondValue) + " Joules.");
-                        stripLabel.Text = "Calculation: F*s";   
-                    }
-        }
+                    textBox3.Text = ((firstValue * secondValue) + "");
+                    stripLabel.Text = "Calculation: F*s";
+
+
+                }
 
                 if (value.Text == "Trajectory - s")
                 {
                     float firstValue;
                     float secondValue;
 
-                    string first = value1.Text;
-                    string second = value3.Text;
+                    string first = textBox1.Text;
+                    string second = textBox3.Text;
 
                     firstValue = float.Parse(first);
                     secondValue = float.Parse(second);
@@ -98,15 +79,240 @@ namespace WindowsFormsApplication1 {
                     float firstValue;
                     float secondValue;
 
-                    string first = value2.Text;
-                    string second = value3.Text;
+                    string first = textBox2.Text;
+                    string second = textBox3.Text;
 
                     firstValue = float.Parse(first);
                     secondValue = float.Parse(second);
 
                     MessageBox.Show("Total: " + (secondValue / firstValue) + " Newtons.");
                 }
+
             }
+            #endregion
+
+            #region Surface
+            if (equation.Text == "Surface")
+            {
+                if (value.Text == "Surface - S")
+                {
+                    float firstValue;
+                    float secondValue;
+
+                    string first = textBox1.Text;
+                    string second = textBox2.Text;
+
+                    firstValue = float.Parse(first);
+                    secondValue = float.Parse(second);
+
+                    textBox3.Text = ((firstValue * secondValue) + "");
+                    stripLabel.Text = "Calculation: a*b";
+                }
+
+                if (value.Text == "Distance - a")
+                {
+                    float firstValue;
+                    float secondValue;
+
+                    string first = textBox2.Text;
+                    string second = textBox3.Text;
+
+                    firstValue = float.Parse(first);
+                    secondValue = float.Parse(second);
+
+                    textBox1.Text = ((secondValue / firstValue) + "");
+                    stripLabel.Text = "Calculation: S/b";
+                }
+
+                if (value.Text == "Distance - b")
+                {
+                    float firstValue;
+                    float secondValue;
+
+                    string first = textBox1.Text;
+                    string second = textBox3.Text;
+
+                    firstValue = float.Parse(first);
+                    secondValue = float.Parse(second);
+
+                    textBox2.Text = ((secondValue / firstValue) + "");
+                    stripLabel.Text = "Calculation: S/a";
+                }
+            }
+            #endregion
+
+            #region Volume
+            if (equation.Text == "Volume")
+            {
+                if (value.Text == "Volume - V")
+                {
+                    float firstValue;
+                    float secondValue;
+                    float thirdValue;
+
+                    string first = textBox1.Text;
+                    string second = textBox2.Text;
+                    string third = textBox3.Text;
+
+                    firstValue = float.Parse(first);
+                    secondValue = float.Parse(second);
+                    thirdValue = float.Parse(third);
+
+                    textBox4.Text = ((firstValue * secondValue * thirdValue) + "");
+                    stripLabel.Text = "Calculation: a*b*c";
+                }
+
+                if (value.Text == "Distance - a")
+                {
+                    float firstValue;
+                    float secondValue;
+                    float thirdValue;
+
+                    string first = textBox2.Text;
+                    string second = textBox3.Text;
+                    string third = textBox4.Text;
+
+                    firstValue = float.Parse(first);
+                    secondValue = float.Parse(second);
+                    thirdValue = float.Parse(third);
+
+                    textBox1.Text = ((thirdValue / (secondValue * firstValue)) + "");
+                    stripLabel.Text = "Calculation: S/(b*c)";
+                }
+
+                if (value.Text == "Distance - b")
+                {
+                    float firstValue;
+                    float secondValue;
+                    float thirdValue;
+
+                    string first = textBox1.Text;
+                    string second = textBox3.Text;
+                    string third = textBox4.Text;
+
+                    firstValue = float.Parse(first);
+                    secondValue = float.Parse(second);
+                    thirdValue = float.Parse(third);
+
+                    textBox2.Text = ((thirdValue / (secondValue * firstValue)) + "");
+                    stripLabel.Text = "Calculation: S/(a*c)";
+                }
+
+                if (value.Text == "Distance - c")
+                {
+                    float firstValue;
+                    float secondValue;
+                    float thirdValue;
+
+                    string first = textBox1.Text;
+                    string second = textBox2.Text;
+                    string third = textBox4.Text;
+
+                    firstValue = float.Parse(first);
+                    secondValue = float.Parse(second);
+                    thirdValue = float.Parse(third);
+
+                    textBox3.Text = ((thirdValue / (secondValue * firstValue)) + "");
+                    stripLabel.Text = "Calculation: S/(a*b)";
+                }
+            }
+            #endregion
+
+            // To-Do - More mathematical operations - Subtract, Multiply, Divide
+            #region Add
+            if(true) {                
+                float firstValue;
+                float secondValue;
+
+                string first = textBox1.Text;
+                string second = textBox2.Text;
+
+                firstValue = float.Parse(first);
+                secondValue = float.Parse(second);
+
+                textBox3.Text = ((firstValue + secondValue) + "");
+                stripLabel.Text = "Calculation: a+b";
+            }
+            #endregion
+        }
+
+        private void physicsPanel_Click(object sender, EventArgs e)
+        {
+            this.equation.Items.Clear();
+            //Adding equations
+            this.equation.Items.AddRange(new object[] {
+            "Work",
+            "Power",
+            "Calorimetric Equation"});            
+        }
+        
+        private void chemistryPanel_Click(object sender, EventArgs e)
+        {
+            this.equation.Items.Clear();
+            //Adding equations
+            this.equation.Items.AddRange(new object[] {"Molecular Weight","dsrg","Calorimetric dsrg"});            
+        }
+
+        private void mathPanel_Click(object sender, EventArgs e)
+        {
+            this.equation.Items.Clear();
+            //Adding equations
+            this.equation.Items.AddRange(new object[] {
+            "Surface",
+            "Volume",
+            "Add (+)"});            
+        }
+
+        private void updateButton_Click(object sender, EventArgs e)
+        {
+            this.value.Items.Clear();
+
+            #region Update Physics
+            // Updating for work equation
+            if (equation.Text == "Work") 
+            { 
+                this.value.Items.AddRange(new object[] { "Force - F", "Distance - s", "Work - W" });
+                this.textValue1.Text = "F = "; this.textValue2.Text = "s = "; this.textValue3.Text = "W = ";
+                this.label1.Text = "Newtons."; this.label2.Text = "Meters."; this.label3.Text = "Joules.";
+            }
+
+            // Updating for power equation
+            if (equation.Text == "Power") 
+            { 
+                this.value.Items.AddRange(new object[] { "Work - W", "Time - t", "Power - P" });
+                this.textValue1.Text = "W = "; this.textValue2.Text = "t = "; this.textValue3.Text = "P = ";
+                this.label1.Text = "Joules."; this.label2.Text = "Seconds."; this.label3.Text = "Watts.";
+            }
+
+            if (equation.Text == "Calorimetric Equation")
+            {
+                this.value.Items.AddRange(new object[] { "Weight - m1", "Weight - m2", "Heat Capacity - c1", "Heat Capacity - c2", "Temperature - t1", "Temperature - t2", "Temperature - t" });
+                this.textValue1.Text = "m1 = "; this.textValue2.Text = "m2 = "; this.textValue3.Text = "c1 = "; this.textValue4.Text = "c2 = "; this.textValue5.Text = "t1 = "; this.textValue6.Text = "t2 = "; this.textValue7.Text = "t = ";
+                this.label1.Text = "Kilograms."; this.label2.Text = "Kilograms."; this.label3.Text = "Joules."; this.label4.Text = "Joules."; this.label5.Text = "°C."; this.label6.Text = "°C."; this.label7.Text = "°C.";
+            }
+            #endregion
+
+            #region Update Math
+            if (equation.Text == "Surface")
+            {
+                this.value.Items.AddRange(new object[] { "Distance - a", "Distance - b", "Surface - S" });
+                this.textValue1.Text = "a = "; this.textValue2.Text = "b = "; this.textValue3.Text = "S = ";
+                this.label1.Text = "Meters."; this.label2.Text = "Meters."; this.label3.Text = "Squared Meters.";
+            }
+            if (equation.Text == "Volume")
+            {
+                this.value.Items.AddRange(new object[] { "Distance - a", "Distance - b", "Distance - c", "Volume - V" });
+                this.textValue1.Text = "a = "; this.textValue2.Text = "b = "; this.textValue3.Text = "c = "; this.textValue4.Text = "V = ";
+                this.label1.Text = "Meters."; this.label2.Text = "Meters."; this.label3.Text = "Meters."; this.label4.Text = "Cubic Meters.";
+            }
+            if (equation.Text == "Add (+)")
+            {
+                this.value.Items.AddRange(new object[] {"c"});
+                this.textValue1.Text = "a = "; this.textValue2.Text = "b = "; this.textValue3.Text = "c = ";
+                this.label1.Text = ""; this.label2.Text = ""; this.label3.Text = "";
+            }
+            #endregion
         }
     }
-
+}
+    
