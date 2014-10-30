@@ -55,7 +55,7 @@ namespace WindowsFormsApplication1
 
             }
 
-            if (value.Text == "Trajectory - s")
+            if (value.Text == "Distance - s")
             {
                 float firstValue;
                 float secondValue;
@@ -66,7 +66,8 @@ namespace WindowsFormsApplication1
                 firstValue = float.Parse(first);
                 secondValue = float.Parse(second);
 
-                MessageBox.Show("Total: " + (secondValue / firstValue) + " Meters.");
+                textBox2.Text = ((secondValue / firstValue) + "");
+                statusStrip.Text = "Calculation: W/F";
             }
 
             if (value.Text == "Force - F")
@@ -80,7 +81,8 @@ namespace WindowsFormsApplication1
                 firstValue = float.Parse(first);
                 secondValue = float.Parse(second);
 
-                MessageBox.Show("Total: " + (secondValue / firstValue) + " Newtons.");
+                textBox1.Text = ((secondValue / firstValue) + "");
+                statusStrip.Text = "Calculation: W/s";
             }
         }
 
@@ -180,6 +182,81 @@ namespace WindowsFormsApplication1
                 }
 
     }
+
+        protected void potEnergy()
+        {
+            if (value.Text == "Potential Energy - Ep")
+            {
+                float firstValue;
+                float secondValue;
+                float thirdValue;
+
+                string first = textBox1.Text;
+                string second = textBox2.Text;
+                string third = textBox3.Text;
+
+                firstValue = float.Parse(first);
+                secondValue = float.Parse(second);
+                thirdValue = float.Parse(third);
+
+                textBox4.Text = ((firstValue * secondValue * thirdValue) + "");
+                statusStrip.Text = "Calculation: m*g*h";
+            }
+
+            if (value.Text == "Mass - m")
+            {
+                float firstValue;
+                float secondValue;
+                float thirdValue;
+
+                string first = textBox2.Text;
+                string second = textBox3.Text;
+                string third = textBox4.Text;
+
+                firstValue = float.Parse(first);
+                secondValue = float.Parse(second);
+                thirdValue = float.Parse(third);
+
+                textBox1.Text = ((thirdValue / (secondValue * firstValue)) + "");
+                statusStrip.Text = "Calculation: Ep/(g*h)";
+            }
+
+            if (value.Text == "Gravitational Pull - g")
+            {
+                float firstValue;
+                float secondValue;
+                float thirdValue;
+
+                string first = textBox1.Text;
+                string second = textBox3.Text;
+                string third = textBox4.Text;
+
+                firstValue = float.Parse(first);
+                secondValue = float.Parse(second);
+                thirdValue = float.Parse(third);
+
+                textBox2.Text = ((thirdValue / (secondValue * firstValue)) + "");
+                statusStrip.Text = "Calculation: Ep/(m*h)";
+            }
+
+            if (value.Text == "Height - h")
+            {
+                float firstValue;
+                float secondValue;
+                float thirdValue;
+
+                string first = textBox1.Text;
+                string second = textBox2.Text;
+                string third = textBox4.Text;
+
+                firstValue = float.Parse(first);
+                secondValue = float.Parse(second);
+                thirdValue = float.Parse(third);
+
+                textBox3.Text = ((thirdValue / (secondValue * firstValue)) + "");
+                statusStrip.Text = "Calculation: Ep/(m*g)";
+            }
+        }
 
         protected void volume()
         {
@@ -353,6 +430,7 @@ namespace WindowsFormsApplication1
             if (equation.Text == "Divide") divide();
             if (equation.Text == "Square Root") squareRoot();
             if (equation.Text == "Square") square();
+            if (equation.Text == "Potential Energy") potEnergy();
 
         }
 
@@ -363,14 +441,16 @@ namespace WindowsFormsApplication1
             this.equation.Items.AddRange(new object[] {
             "Work",
             "Power",
-            "Calorimetric Equation"});            
+            "Calorimetric Equation",
+            "Potential Energy"});
+            this.textBox1.Enabled = false; this.textBox2.Enabled = false; this.textBox3.Enabled = false; this.textBox4.Enabled = false; this.textBox5.Enabled = false; this.textBox6.Enabled = false; this.textBox7.Enabled = false;
         }
         
         private void chemistryPanel_Click(object sender, EventArgs e)
         {
             this.equation.Items.Clear();
             //Adding equations
-            this.equation.Items.AddRange(new object[] {"Molecular Weight","dsrg","Calorimetric dsrg"});            
+            this.equation.Items.AddRange(new object[] { "Molecular Weight", "Molecular Concentration" });           
         }
 
         private void mathPanel_Click(object sender, EventArgs e)
@@ -390,7 +470,13 @@ namespace WindowsFormsApplication1
 
         private void updateButton_Click(object sender, EventArgs e)
         {
+            #region Clean
             this.value.Items.Clear();
+            this.textValue1.Text = ""; this.textValue2.Text = ""; this.textValue3.Text = ""; this.textValue4.Text = ""; this.textValue5.Text = ""; this.textValue6.Text = ""; this.textValue7.Text = "";
+            this.textBox1.Text = ""; this.textBox2.Text = ""; this.textBox3.Text = ""; this.textBox4.Text = ""; this.textBox5.Text = ""; this.textBox6.Text = ""; this.textBox7.Text = "";
+            this.label1.Text = ""; this.label2.Text = ""; this.label3.Text = ""; this.label4.Text = ""; this.label5.Text = ""; this.label6.Text = ""; this.label7.Text = "";
+            this.textBox1.Enabled = false; this.textBox2.Enabled = false; this.textBox3.Enabled = false; this.textBox4.Enabled = false; this.textBox5.Enabled = false; this.textBox6.Enabled = false; this.textBox7.Enabled = false;
+            #endregion
 
             #region Update Physics
             // Updating for work equation
@@ -399,6 +485,7 @@ namespace WindowsFormsApplication1
                 this.value.Items.AddRange(new object[] { "Force - F", "Distance - s", "Work - W" });
                 this.textValue1.Text = "F = "; this.textValue2.Text = "s = "; this.textValue3.Text = "W = ";
                 this.label1.Text = "Newtons."; this.label2.Text = "Meters."; this.label3.Text = "Joules.";
+                this.textBox1.Enabled = true; this.textBox2.Enabled = true; this.textBox3.Enabled = true;
             }
 
             // Updating for power equation
@@ -407,13 +494,23 @@ namespace WindowsFormsApplication1
                 this.value.Items.AddRange(new object[] { "Work - W", "Time - t", "Power - P" });
                 this.textValue1.Text = "W = "; this.textValue2.Text = "t = "; this.textValue3.Text = "P = ";
                 this.label1.Text = "Joules."; this.label2.Text = "Seconds."; this.label3.Text = "Watts.";
+                this.textBox1.Enabled = true; this.textBox2.Enabled = true; this.textBox3.Enabled = true;
             }
 
             if (equation.Text == "Calorimetric Equation")
             {
-                this.value.Items.AddRange(new object[] { "Weight - m1", "Weight - m2", "Heat Capacity - c1", "Heat Capacity - c2", "Temperature - t1", "Temperature - t2", "Temperature - t" });
+                this.value.Items.AddRange(new object[] { "Mass - m1", "Mass - m2", "Heat Capacity - c1", "Heat Capacity - c2", "Temperature - t1", "Temperature - t2", "Temperature - t" });
                 this.textValue1.Text = "m1 = "; this.textValue2.Text = "m2 = "; this.textValue3.Text = "c1 = "; this.textValue4.Text = "c2 = "; this.textValue5.Text = "t1 = "; this.textValue6.Text = "t2 = "; this.textValue7.Text = "t = ";
                 this.label1.Text = "Kilograms."; this.label2.Text = "Kilograms."; this.label3.Text = "Joules."; this.label4.Text = "Joules."; this.label5.Text = "°C."; this.label6.Text = "°C."; this.label7.Text = "°C.";
+                this.textBox1.Enabled = true; this.textBox2.Enabled = true; this.textBox3.Enabled = true; this.textBox4.Enabled = true; this.textBox5.Enabled = true; this.textBox6.Enabled = true; this.textBox7.Enabled = true;
+            }
+
+            if (equation.Text == "Potential Energy")
+            {
+                this.value.Items.AddRange(new object[] { "Mass - m", "Gravitational Pull - g", "Height - h", "Potential Energy - Ep" });
+                this.textValue1.Text = "m = "; this.textValue2.Text = "g = "; this.textValue3.Text = "h = "; this.textValue4.Text = "Ep = ";
+                this.label1.Text = "Kilograms."; this.label2.Text = "N/kg."; this.label3.Text = "Meters."; this.label4.Text = "Joules.";
+                this.textBox1.Enabled = true; this.textBox2.Enabled = true; this.textBox3.Enabled = true; this.textBox4.Enabled = true;
             }
             #endregion
 
